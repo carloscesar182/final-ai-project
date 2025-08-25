@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
 import pandas as pd
-from data.preprocessing import clean_missing_values, encode_features, scale_features
+from data_preprocessing import replace_missing_values, encode_categorical_features, scale_numerical_features
 
 def test_preprocessing_functions():
     print("Testing preprocessing functions...")
@@ -23,16 +23,19 @@ def test_preprocessing_functions():
     print(sample_data)
     print()
     
-    # Test clean_missing_values
-    cleaned_data = clean_missing_values(sample_data)
+    # Test replace_missing_values
+    cleaned_data = replace_missing_values(sample_data.copy())
     print("After cleaning missing values:")
     print(cleaned_data)
     print()
     
-    # Test encode_features
-    encoded_data, encoders = encode_features(cleaned_data, None)
-    print("After encoding features:")
-    print(encoded_data)
+    # Test encode_categorical_features (requires train and validation sets)
+    # For testing, we'll use the same data for both train and val
+    train_data = cleaned_data.drop('value2', axis=1)  # Remove target column
+    val_data = train_data.copy()
+    encoded_train, encoded_val, encoders = encode_categorical_features(train_data, val_data)
+    print("After encoding features (train):")
+    print(encoded_train)
     print("Encoders:", list(encoders.keys()))
     print()
     
