@@ -6,7 +6,7 @@ def clean_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     """Substitui '?' por 'Not-informed'."""
     return df.replace('?', 'Not-informed')
 
-def encode_features(df: pd.DataFrame, encoders: None):
+def encode_features(df: pd.DataFrame, encoders=None):
     """Label encoder para variáveis categóricas."""
     encoders = encoders or {}
     df_encoded = df.copy()
