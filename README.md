@@ -1,124 +1,120 @@
-# Final AI Project 🎯
+# Previsão de Renda com Machine Learning
 
-Projeto final do curso de Inteligência Artificial, desenvolvido em Python.  
-O objetivo é construir um pipeline completo de **Machine Learning**, incluindo:
-- Pré-processamento de dados
-- Treinamento de modelos customizados
-- AutoML
-- Avaliação de modelos
-- Interpretação de modelos (XAI)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
----
+## Sobre o projeto
 
-## 📂 Estrutura do Projeto
+Este projeto de conclusão de curso implementa um pipeline completo de Machine Learning para prever a faixa de renda de pessoas a partir de características demográficas e socioeconômicas do dataset Adult (Census Income).
 
-final_ai_project/
-│── src/
-│ ├── data_loader.py # Funções para carregar datasets
-│ ├── data_preprocessing.py # Funções de limpeza, transformação e split dos dados
-│ ├── custom_models.py # Definição de modelos customizados (ex: GradientBoostingClassifier)
-│ ├── automl_model.py # Pipeline de AutoML (AutoSklearn, Optuna, etc.)
-│ ├── model_evaluation.py # Funções para métricas e avaliação dos modelos
-│ ├── explain_model.py # Interpretação dos modelos (SHAP, LIME, etc.)
-│ └── main.py # Script principal para rodar o pipeline completo
-│
-│── tests/
-│ ├── test_preprocessing.py # Testes unitários do pré-processamento
-│ ├── test_train_models.py # Testes de treinamento de modelos
-│ ├── test_evaluation.py # Testes de avaliação
-│ └── test_xai.py # Testes de explicabilidade
-│
-│── requirements.txt # Dependências do projeto
-│── README.md # Documentação do projeto
+O objetivo foi desenvolver uma solução organizada, reproduzível e explicável, abrangendo desde o carregamento dos dados até o treinamento, comparação e interpretação dos modelos.
 
----
+## Principais funcionalidades
 
-## ⚙️ Instalação
+- Carregamento dos conjuntos de treino, validação e teste
+- Tratamento de valores ausentes
+- Codificação de variáveis categóricas
+- Normalização de variáveis numéricas
+- Treinamento de Gradient Boosting, Random Forest e Naive Bayes
+- Avaliação dos modelos com métricas de classificação
+- Estrutura preparada para interpretabilidade com SHAP
+- Testes automatizados para pré-processamento, treinamento, avaliação e explicabilidade
 
-1. Clone o repositório:
+## Tecnologias
+
+- Python 3.10+
+- Pandas e NumPy
+- Scikit-learn
+- Matplotlib e Seaborn
+- H2O AutoML
+- SHAP
+- Pytest
+
+## Estrutura do projeto
+
+```text
+.
+├── data/
+│   ├── train.csv
+│   ├── validation.csv
+│   └── test.csv
+├── src/
+│   ├── data_loader.py
+│   ├── data_preprocessing.py
+│   ├── custom_models.py
+│   ├── automl_model.py
+│   ├── model_evaluation.py
+│   ├── explain_model.py
+│   └── main.py
+├── test_evaluation.py
+├── test_preprocessing.py
+├── test_train_models.py
+├── test_xai.py
+├── requirements.txt
+└── README.md
+```
+
+## Instalação
+
 ```bash
 git clone https://github.com/carloscesar182/final-ai-project.git
 cd final-ai-project
-```
-
-2. Crie o ambiente virtual:
-```bash
 python -m venv .venv
 ```
 
-3. Ative o ambiente:
-- Windows:
+Ative o ambiente virtual:
 
 ```bash
+# Windows
 .venv\Scripts\activate
-```
-- Linux/Mac:
-```bash
+
+# Linux/macOS
 source .venv/bin/activate
 ```
 
-4. Instale as dependências:
+Instale as dependências:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 🚀 Como Executar
-Rode o pipeline completo com:
+## Como executar
+
+A partir da raiz do projeto:
 
 ```bash
 python src/main.py
 ```
 
-## 🧪 Testes
-Para rodar os testes unitários:
+Os dados de entrada devem permanecer em `data/train.csv`, `data/validation.csv` e `data/test.csv`.
+
+## Testes
 
 ```bash
 pytest
 ```
 
-## 📊 Exemplo de Uso
+## Sobre o dataset
 
-Um exemplo simples de como rodar o pipeline no Python:
-```python
-from src.data_loader import load_dataset
-from src.data_preprocessing import preprocess_data
-from src.custom_models import train_custom_model
-from src.model_evaluation import evaluate_model
-from src.explain_model import explain_with_shap
+Este projeto utiliza a base pública Adult Income, também conhecida como Census Income. Cada registro representa uma pessoa e contém atributos como idade, escolaridade, ocupação, horas trabalhadas e situação civil.
 
-# 3. Carregar dados (ex: dataset Titanic, Iris, etc.)
-df = load_dataset("iris")
+A variável-alvo indica se a renda anual ultrapassa um determinado limite. O dataset pode apresentar desbalanceamento entre as classes e exigia tratamento cuidadoso dos dados antes do treinamento.
 
-# 2. Pré-processar
-X_train, X_test, y_train, y_test = preprocess_data(df, target="species")
+## Próximas melhorias
 
-# 3. Treinar modelo
-model = train_custom_model(X_train, y_train)
+- Publicar métricas finais de forma comparativa
+- Adicionar matriz de confusão e visualizações SHAP
+- Criar uma pipeline única com Scikit-learn
+- Adicionar validação cruzada e busca de hiperparâmetros
+- Disponibilizar o modelo por meio de uma API ou aplicação web
+- Completar uma execução ponta a ponta com instruções de reprodução
 
-# 4. Avaliar
-metrics = evaluate_model(model, X_test, y_test)
-print("Resultados:", metrics)
+## Licença
 
-# 5. Interpretar
-explain_with_shap(model, X_test)
-```
+Este projeto está licenciado sob a licença MIT.
 
-## 📊 Modelos
-Atualmente, o projeto inclui:
-- GradientBoostingClassifier (modelo base)
-- AutoML para seleção e tuning de outros modelos
-- Interpretação via SHAP/LIME
+## Contato
 
-## 🛠 Tecnologias
-- Python 3.10+
-- Scikit-learn
-- Pandas & Numpy
-- SHAP / LIME (XAI)
-- Pytest (testes)
-- Auto-sklearn / Optuna (AutoML)
-
-## ✨ Próximos Passos
-- Adicionar novos modelos customizados
-- Melhorar explicabilidade com gráficos interativos
-- Deploy em API/Streamlit
+- **Autor:** Carlos Ferreira
+- **LinkedIn:** https://www.linkedin.com/in/carloscferreira/
+- **E-mail:** carloscesar182@gmail.com
